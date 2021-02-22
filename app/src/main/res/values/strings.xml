@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CYARP</string>
+    <string name="prediction_button">Prediction</string>
+    <string name="language">Language</string>
+    <string name="title">Crop Yield and Rainfall Prediction</string>
+    <string name="prediction_detail">Prediction detail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
