@@ -7,6 +7,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.rainfallprediction.Predictiondata.Humidity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +65,43 @@ public class PredictionDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prediction_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_prediction_detail, container, false);
+        TextView textView = view.findViewById(R.id.textView2);
+
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<Collection<Humidity>>(){}.getType();
+        List<Humidity> predictionData = gson.fromJson(loadJSONFromAsset(), collectionType);
+        for (Humidity data : predictionData) {
+            textView.setText(data.getTitle());
+        }
+
+        return view;
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            byte[] buffer;
+            if (getActivity() != null) {
+                try (InputStream is = getActivity().getAssets().open("weather.json")) {
+                    int size = is.available();
+                    buffer = new byte[size];
+                    is.read(buffer);
+                    is.close();
+                    json = new String(buffer, StandardCharsets.UTF_8);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 }
