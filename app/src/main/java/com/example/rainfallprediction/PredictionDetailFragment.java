@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rainfallprediction.Predictiondata.MonthlyReport;
 import com.example.rainfallprediction.Predictiondata.Weather;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +36,11 @@ public class PredictionDetailFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private List<MonthlyReport> temperature;
+    private List<MonthlyReport> rainfall;
+    private List<MonthlyReport> humidity;
+    private List<MonthlyReport> pressure;
+    private List<MonthlyReport> wind;
 
     public PredictionDetailFragment() {
         // Required empty public constructor
@@ -75,23 +79,47 @@ public class PredictionDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_prediction_detail, container, false);
-        TextView textView = view.findViewById(R.id.textView2);
+        TextView temperatureTextView = view.findViewById(R.id.temperature);
+        TextView rainfallTextView = view.findViewById(R.id.rainfall);
+        TextView humidityTextView = view.findViewById(R.id.humidity);
+        TextView pressureTextView = view.findViewById(R.id.pressure);
+        TextView windTextView = view.findViewById(R.id.wind);
 
-        loadJSONFromAsset();
-//        for (Weather data : predictionData) {
-//            textView.setText(data.getTitle());
-//        }
+        Map<WeatherType, Weather> weatherReport = loadJSONFromAsset();
+        temperature = weatherReport.get(WeatherType.Temperature).getGetMonthlyReport();
+        for (MonthlyReport month: temperature){
+            temperatureTextView.setText(month.getJan());
+        }
+        rainfall = weatherReport.get(WeatherType.Rainfall).getGetMonthlyReport();
+        for (MonthlyReport month: rainfall){
+            rainfallTextView.setText(month.getJan());
+        }
+        humidity = weatherReport.get(WeatherType.Humidity).getGetMonthlyReport();
+        for (MonthlyReport month: humidity){
+            humidityTextView.setText(month.getJan());
+        }
+        pressure = weatherReport.get(WeatherType.Pressure).getGetMonthlyReport();
+        for (MonthlyReport month: pressure){
+            pressureTextView.setText(month.getJan());
+        }
+        wind = weatherReport.get(WeatherType.Wind).getGetMonthlyReport();
+        for (MonthlyReport month: wind){
+            windTextView.setText(month.getJan());
+        }
 
         return view;
     }
 
 
-    public List<Weather> loadJSONFromAsset() {
+    public Map<WeatherType, Weather> loadJSONFromAsset() {
         String json = null;
         String[] fileList;
-        List<Weather> weatherInfoData = new ArrayList<>();
+        Map<WeatherType, Weather> weatherInfoData = new HashMap<>();
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<Collection<Weather>>() {}.getType();
+//        Type collectionType = new TypeToken<Collection<Weather>>() {}.getType();
+//        StringBuilder sb = new StringBuilder();
+         String jsonString = null;
+
         try {
             byte[] buffer;
             if (getActivity() != null) {
@@ -103,7 +131,9 @@ public class PredictionDetailFragment extends Fragment {
                         is.read(buffer);
                         is.close();
                         json = new String(buffer, StandardCharsets.UTF_8);
-                        weatherInfoData.add(gson.fromJson(json, collectionType));
+//                        jsonString = sb.append(json).toString();
+                        String[] weatherName = fileName.split("\\.");
+                        weatherInfoData.put(WeatherType.valueOf(weatherName[0]), gson.fromJson(json, Weather.class));
                     }
                 }
             }

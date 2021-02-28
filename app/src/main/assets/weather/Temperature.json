@@ -1,5 +1,5 @@
 {
-	"temperature": [
+	"Temperature": [
 		{
 			"year": 2010,
 			"jan": 25,
@@ -136,7 +136,7 @@
 			"dec": 26
 		},
 		{
-			"year": 2019
+			"year": 2019,
 			"jan": 25,
 			"feb": 28,
 			"mar": 30,

@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <TextView
-        android:id="@+id/temperaturevalue"
+        android:id="@+id/temperature"
         android:layout_width="76dp"
         android:layout_height="19dp"
         android:text="Value"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.308" />
 
     <TextView
-        android:id="@+id/rainfallvalue"
+        android:id="@+id/rainfall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.397" />
 
     <TextView
-        android:id="@+id/humidityvalue"
+        android:id="@+id/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value"
@@ -104,7 +104,7 @@
         app:layout_constraintVertical_bias="0.484" />
 
     <TextView
-        android:id="@+id/pressurevalue"
+        android:id="@+id/pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Value"
@@ -128,7 +128,7 @@
         app:layout_constraintVertical_bias="0.576" />
 
     <TextView
-        android:id="@+id/windvalue"
+        android:id="@+id/wind"
         android:layout_width="76dp"
         android:layout_height="18dp"
         android:text="Value"
