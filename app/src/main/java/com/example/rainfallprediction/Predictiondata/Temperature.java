@@ -1,4 +1,4 @@
 package com.example.rainfallprediction.Predictiondata;
 
-public class Humidity extends Weather {
+public class Temperature extends Weather{
 }
