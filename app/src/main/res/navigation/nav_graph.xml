@@ -3,18 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/login_fragment">
 
     <fragment
-        android:id="@+id/predictionDetailFragment"
-        android:name="com.example.rainfallprediction.PredictionDetailFragment"
-        android:label="PredictionDetailFragment" />
+        android:id="@+id/login_fragment"
+        android:name="com.example.rainfallprediction.Login"
+        android:label="Login" >
+
+        <action
+            android:id="@+id/login_page_to_main_fragment"
+            app:destination="@+id/mainFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.rainfallprediction.MainFragment"
         android:label="MainFragment" >
+
         <action
             android:id="@+id/action_mainFragment_to_predictionDetailFragment"
             app:destination="@id/predictionDetailFragment" />
+
     </fragment>
+    <fragment
+        android:id="@+id/predictionDetailFragment"
+        android:name="com.example.rainfallprediction.PredictionDetailFragment"
+        android:label="PredictionDetailFragment" />
 </navigation>

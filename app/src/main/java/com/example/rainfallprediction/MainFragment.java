@@ -28,9 +28,9 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    private String[] year = {"2021","2022", "2023", "2024", "2025", "2026", "2027"};
-    private String[] crops = {"Rice","Wheat", "Coconut", "Millets", "Spices"};
+    private String[] months = {"MONTH","Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private String[] year = {"YEAR","2021","2022", "2023", "2024", "2025", "2026", "2027"};
+    private String[] crops = {"CROP","Rice","Sugarcane", "Groundnut", "Sorghum", "Tomato","Cotton","Maize"};
     private Spinner monthSpinner, cropSpinner, yearSpinner;
 
     public MainFragment() {
