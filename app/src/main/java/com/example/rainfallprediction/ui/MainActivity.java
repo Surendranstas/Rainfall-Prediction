@@ -1,4 +1,4 @@
-package com.example.rainfallprediction;
+package com.example.rainfallprediction.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.rainfallprediction.R;
 
 import java.lang.reflect.Field;
 import java.util.Calendar;

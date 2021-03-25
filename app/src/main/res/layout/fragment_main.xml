@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <Button
         android:id="@+id/Prediction_btn"
@@ -21,9 +20,11 @@
 
     <Spinner
         android:id="@+id/month_spinner"
+        android:background="@drawable/blue_outline"
+        style="@style/Widget.AppCompat.DropDownItem.Spinner"
         android:layout_width="130dp"
         android:layout_height="43dp"
-        android:background="#ffb74d"
+        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
@@ -33,9 +34,10 @@
 
     <Spinner
         android:id="@+id/crop_spinner"
+        android:background="@drawable/blue_outline"
+        android:spinnerMode="dropdown"
         android:layout_width="130dp"
         android:layout_height="43dp"
-        android:background="#ffb74d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -45,9 +47,9 @@
 
     <Spinner
         android:id="@+id/year_spinner"
+        android:background="@drawable/blue_outline"
         android:layout_width="130dp"
         android:layout_height="43dp"
-        android:background="#ffb74d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
@@ -57,18 +59,16 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="195dp"
-        android:layout_height="24dp"
-        android:background="#ffb74d"
-        android:text=" CHOOSE YOUR SCHEDULE"
-        android:textColor="#000000"
-        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Your Schedule"
+        android:textColor="@color/text_color"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
+        app:layout_constraintVertical_bias="0.248" />
 
     <ImageView
         android:id="@+id/imageView2"

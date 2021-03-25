@@ -1,4 +1,4 @@
-package com.example.rainfallprediction;
+package com.example.rainfallprediction.ui;
 
 import android.os.Bundle;
 
@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.rainfallprediction.Predictiondata.Report;
 import com.example.rainfallprediction.Predictiondata.Weather;
+import com.example.rainfallprediction.R;
+import com.example.rainfallprediction.WeatherType;
 import com.google.gson.Gson;
 
 import java.io.IOException;

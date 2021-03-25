@@ -1,4 +1,4 @@
-package com.example.rainfallprediction;
+package com.example.rainfallprediction.ui;
 
 
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import com.example.rainfallprediction.R;
 
 
 public class Login extends Fragment {
@@ -39,15 +41,13 @@ public class Login extends Fragment {
         msg = view.findViewById(R.id.message);
         register_btn = view.findViewById(R.id.register_btn);
         login_btn = view.findViewById(R.id.login_btn);
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if((String.valueOf(user.getText()).equals(usr_name)) && String.valueOf(pswd.getText()).equals(pwd))
-                    Navigation.findNavController(v).navigate(R.id.login_page_to_main_fragment);
-                else
-                    msg.setText("Username or Password is Incorrect !");
-            }
+        login_btn.setOnClickListener(v -> {
+            if((String.valueOf(user.getText()).equals(usr_name)) && String.valueOf(pswd.getText()).equals(pwd))
+                Navigation.findNavController(v).navigate(R.id.login_page_to_main_fragment);
+            else
+                msg.setText("Username or Password is Incorrect !");
         });
+        register_btn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_login_fragment_to_registerFragment));
         return view;
     }
 
