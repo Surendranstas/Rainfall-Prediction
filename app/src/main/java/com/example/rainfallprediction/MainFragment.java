@@ -24,6 +24,9 @@ public class MainFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String PREDICTION_YEAR = "PREDICTION YEAR";
+    public static final String PREDICTION_MONTH = "PREDICTION MONTH";
+    public static final String PREDICTION_CROP = "PREDICTION CROP";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -78,11 +81,12 @@ public class MainFragment extends Fragment {
         setCropYear();
 
         Button button = view.findViewById(R.id.Prediction_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_mainFragment_to_predictionDetailFragment);
-            }
+        button.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString(PREDICTION_MONTH, monthSpinner.getSelectedItem().toString());
+            bundle.putString(PREDICTION_YEAR, yearSpinner.getSelectedItem().toString());
+            bundle.putString(PREDICTION_CROP, cropSpinner.getSelectedItem().toString());
+            Navigation.findNavController(v).navigate(R.id.action_mainFragment_to_predictionDetailFragment, bundle);
         });
         return view;
     }

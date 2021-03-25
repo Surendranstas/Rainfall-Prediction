@@ -2,7 +2,7 @@ package com.example.rainfallprediction.Predictiondata;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MonthlyReport {
+public class Report {
     @SerializedName("year")
     private String year;
     @SerializedName("jan")

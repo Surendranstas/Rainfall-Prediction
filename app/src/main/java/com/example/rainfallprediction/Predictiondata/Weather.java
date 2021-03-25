@@ -6,15 +6,15 @@ import java.util.List;
 
 public class Weather {
 
-    public List<MonthlyReport> getGetMonthlyReport() {
-        return getMonthlyReport;
+    public List<Report> getReport() {
+        return report;
     }
 
-    public void setGetMonthlyReport(List<MonthlyReport> getMonthlyReport) {
-        this.getMonthlyReport = getMonthlyReport;
+    public void setReport(List<Report> report) {
+        this.report = report;
     }
 
     @SerializedName(value = "Humidity", alternate = {"Pressure", "Rainfall", "Temperature", "Wind"})
-   private List<MonthlyReport> getMonthlyReport;
+   private List<Report> report;
 
 }

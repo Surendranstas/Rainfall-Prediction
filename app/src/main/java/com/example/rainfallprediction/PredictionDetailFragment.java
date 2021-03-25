@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.rainfallprediction.Predictiondata.MonthlyReport;
+import com.example.rainfallprediction.Predictiondata.Report;
 import com.example.rainfallprediction.Predictiondata.Weather;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,20 +28,17 @@ import java.util.Map;
  */
 public class PredictionDetailFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String WEATHER_DIR = "weather";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private List<MonthlyReport> temperature;
-    private List<MonthlyReport> rainfall;
-    private List<MonthlyReport> humidity;
-    private List<MonthlyReport> pressure;
-    private List<MonthlyReport> wind;
+
+    private String selectedMonth;
+    private String selectedCrop;
+    private String selectedYear;
+    private Map<WeatherType, Weather> weatherReport;
+
 
     public PredictionDetailFragment() {
         // Required empty public constructor
@@ -68,8 +66,10 @@ public class PredictionDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            Bundle bundle = getArguments();
+            selectedMonth = bundle.getString(MainFragment.PREDICTION_MONTH, "Jan");
+            selectedCrop = bundle.getString(MainFragment.PREDICTION_CROP, "Rice");
+            selectedYear = bundle.getString(MainFragment.PREDICTION_YEAR, "2010");
         }
 
     }
@@ -84,30 +84,54 @@ public class PredictionDetailFragment extends Fragment {
         TextView humidityTextView = view.findViewById(R.id.humidity);
         TextView pressureTextView = view.findViewById(R.id.pressure);
         TextView windTextView = view.findViewById(R.id.wind);
-
-        Map<WeatherType, Weather> weatherReport = loadJSONFromAsset();
-        temperature = weatherReport.get(WeatherType.Temperature).getGetMonthlyReport();
-        for (MonthlyReport month: temperature){
-            temperatureTextView.setText(month.getJan());
-        }
-        rainfall = weatherReport.get(WeatherType.Rainfall).getGetMonthlyReport();
-        for (MonthlyReport month: rainfall){
-            rainfallTextView.setText(month.getJan());
-        }
-        humidity = weatherReport.get(WeatherType.Humidity).getGetMonthlyReport();
-        for (MonthlyReport month: humidity){
-            humidityTextView.setText(month.getJan());
-        }
-        pressure = weatherReport.get(WeatherType.Pressure).getGetMonthlyReport();
-        for (MonthlyReport month: pressure){
-            pressureTextView.setText(month.getJan());
-        }
-        wind = weatherReport.get(WeatherType.Wind).getGetMonthlyReport();
-        for (MonthlyReport month: wind){
-            windTextView.setText(month.getJan());
-        }
+        weatherReport = loadJSONFromAsset();
+        temperatureTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Temperature).getReport()));
+        rainfallTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Rainfall).getReport()));
+        humidityTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Humidity).getReport()));
+        pressureTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Pressure).getReport()));
+        windTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Wind).getReport()));
 
         return view;
+    }
+
+    private String getPredictionValue(List<Report> reportList) {
+        double avg = 0.0;
+        for (Report report : reportList) {
+            avg += Double.parseDouble(getData(report));
+        }
+        return NumberFormat.getInstance().format(avg / reportList.size());
+    }
+
+    private String getData(Report report) {
+
+        switch (selectedMonth) {
+            case "Jan":
+                return report.getJan();
+            case "Feb":
+                return report.getFeb();
+            case "Mar":
+                return report.getMar();
+            case "Apr":
+                return report.getApr();
+            case "May":
+                return report.getMay();
+            case "Jun":
+                return report.getJun();
+            case "Jul":
+                return report.getJul();
+            case "Aug":
+                return report.getAug();
+            case "Sep":
+                return report.getSep();
+            case "Oct":
+                return report.getOct();
+            case "Nov":
+                return report.getNov();
+            case "Dec":
+                return report.getDec();
+            default:
+                return report.getJan();
+        }
     }
 
 
@@ -118,14 +142,14 @@ public class PredictionDetailFragment extends Fragment {
         Gson gson = new Gson();
 //        Type collectionType = new TypeToken<Collection<Weather>>() {}.getType();
 //        StringBuilder sb = new StringBuilder();
-         String jsonString = null;
+        String jsonString = null;
 
         try {
             byte[] buffer;
             if (getActivity() != null) {
                 fileList = getActivity().getAssets().list(WEATHER_DIR);
                 for (String fileName : fileList) {
-                    try (InputStream is = getActivity().getAssets().open(WEATHER_DIR +"/"+ fileName)) {
+                    try (InputStream is = getActivity().getAssets().open(WEATHER_DIR + "/" + fileName)) {
                         int size = is.available();
                         buffer = new byte[size];
                         is.read(buffer);
