@@ -13,8 +13,8 @@ import androidx.navigation.Navigation;
 
 
 public class Login extends Fragment {
-    private String usr_name = "adminteam";
-    private String pwd = "peri1452";
+    private String usr_name = "";
+    private String pwd = "";
 
     private TextView user , pswd , msg ;
     private Button login_btn , register_btn ;

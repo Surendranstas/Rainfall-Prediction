@@ -1,0 +1,24 @@
+{
+  "crops": [
+    {
+      "Name": "Rice",
+      "Cultivate": [
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep"
+      ],
+      "Temp": "25° to 35° C",
+      "Soil": "Alluvial soils"
+    },
+    {
+      "Name": "Groundnut",
+      "Cultivate": [
+        "Oct",
+        "Nov"
+      ],
+      "Temp": "25° to 35° C",
+      "Soil": "Alluvial soils"
+    }
+  ]
+}

@@ -28,5 +28,14 @@
     <fragment
         android:id="@+id/predictionDetailFragment"
         android:name="com.example.rainfallprediction.PredictionDetailFragment"
-        android:label="PredictionDetailFragment" />
+        android:label="PredictionDetailFragment" >
+        <action
+            android:id="@+id/action_predictionDetailFragment_to_newFragment"
+            app:destination="@id/newFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFragment"
+        android:name="com.example.rainfallprediction.NewFragment"
+        android:label="fragment_new"
+        tools:layout="@layout/fragment_new" />
 </navigation>

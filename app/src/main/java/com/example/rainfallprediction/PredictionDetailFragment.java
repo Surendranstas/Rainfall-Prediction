@@ -3,10 +3,12 @@ package com.example.rainfallprediction;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.rainfallprediction.Predictiondata.Report;
@@ -84,6 +86,12 @@ public class PredictionDetailFragment extends Fragment {
         TextView humidityTextView = view.findViewById(R.id.humidity);
         TextView pressureTextView = view.findViewById(R.id.pressure);
         TextView windTextView = view.findViewById(R.id.wind);
+        Button nextButton = view.findViewById(R.id.nxt_btn);
+        nextButton.setOnClickListener((v)-> {
+            Bundle bundle = new Bundle();
+            bundle.putString(NewFragment.SELECTED_CROP, selectedCrop);
+            Navigation.findNavController(v).navigate(R.id.action_predictionDetailFragment_to_newFragment, bundle);
+        });
         weatherReport = loadJSONFromAsset();
         temperatureTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Temperature).getReport()));
         rainfallTextView.setText(getPredictionValue(weatherReport.get(WeatherType.Rainfall).getReport()));
