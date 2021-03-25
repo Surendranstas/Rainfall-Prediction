@@ -70,12 +70,19 @@ public class NewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new, container, false);
-        TextView textView = view.findViewById(R.id.txtvw);
+        TextView cropName = view.findViewById(R.id.cropname);
+        TextView soilType = view.findViewById(R.id.soiltype);
+        TextView cultivateMonths = view.findViewById(R.id.cultivatemonths);
+        TextView soilTemp = view.findViewById(R.id.soiltemp);
         CropsList cropsList = loadJSONFromAsset();
         for (Crop crop : cropsList.getCropList()) {
-            if (selectedCrop.equalsIgnoreCase(crop.getCropName()))
-            textView.setText(crop.getCultivate().toString().replaceAll("(^\\[|]$)", ""));
-            break;
+            if (selectedCrop.equalsIgnoreCase(crop.getCropName())) {
+                cropName.setText(crop.getCropName());
+                soilType.setText(crop.getSoil());
+                cultivateMonths.setText(crop.getCultivate().toString().replaceAll("(^\\[|]$)", ""));
+                soilTemp.setText(crop.getTemp());
+                break;
+            }
         }
         return view;
     }

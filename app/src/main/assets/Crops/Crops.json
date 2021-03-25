@@ -6,7 +6,8 @@
         "Jun",
         "Jul",
         "Aug",
-        "Sep"
+        "Sep",
+        "oct"
       ],
       "Temp": "25° to 35° C",
       "Soil": "Alluvial soils"
@@ -19,6 +20,64 @@
       ],
       "Temp": "25° to 35° C",
       "Soil": "Alluvial soils"
+    },
+    {
+      "Name": "Sugarcane",
+      "Cultivate": [
+        "Jan",
+        "Feb",
+        "oct",
+        "Nov",
+        "Dec"
+      ],
+      "Temp": "15° to 45° C",
+      "Soil": "Black soil"
+    },
+    {
+      "Name": "Maize",
+      "Cultivate": [
+        "Feb",
+        "Mar",
+        "Jul",
+        "Aug"
+      ],
+      "Temp": "21° to 27° C",
+      "Soil": "Arid Soil"
+    },
+    {
+      "Name": "Tomato",
+      "Cultivate": [
+        "Mar",
+        "Apr",
+        "May",
+        "Jun"
+      ],
+      "Temp": "12° to 23° C",
+      "Soil": "Black soil"
+    },
+    {
+      "Name": "Cotton",
+      "Cultivate": [
+        "Feb",
+        "Jun",
+        "Jul",
+        "Aug"
+      ],
+      "Temp": "21° to 37° C",
+      "Soil": "Alluvial soils"
+    },
+    {
+      "Name": "Sorghum",
+      "Cultivate": [
+        "Jan",
+        "Feb",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul"
+      ],
+      "Temp": "27° to 30° C",
+      "Soil": "Arid Soil"
     }
   ]
 }
